@@ -4,7 +4,7 @@ https://www.acmicpc.net/problem/10828
 '''
 
 import sys
-print('hi')
+
 n = int(sys.stdin.readline())
 stack = []
 
@@ -30,13 +30,13 @@ for i in range(n):
         print(len(stack))
     
     elif order == 'empty':
-        if len(stack):
+        if len(stack) == 0:
             print(1)
         else:
             print(0)
     
     elif order == 'top':
-        if len(stack):
+        if len(stack) == 0:
             print(-1)
         else:
             print(stack[-1])
