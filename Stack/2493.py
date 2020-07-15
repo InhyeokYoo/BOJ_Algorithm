@@ -4,12 +4,18 @@ https://www.acmicpc.net/problem/2493
 ---
 
 풀이법:
-탑의 배열을 stack으로 준비한다. stack에서 하나씩 pop하며, stack에 남아있는 탑의 크기와 비교하면 된다.
+탑의 배열을 준비한다. 
+배열을 iteration하며 stack에 집어넣는다.
+만일 stack에 있는 탑의 높이가 현재 iteration 탑의 크기보다 작다면,
+stack에 있는 탑은 절대 신호를 수신하지 못한다.
+'''
 
-1. 시간 초과 발생
-- prev_hit, prev_hit_idx를 설정하여 이전에 적중한 탑의 크기와 idx를 기억했음.
-- 도대체 어디서 시간을 잡아먹는 걸까?
-- Pypy도 실패함.
+"""
+# 오답
+# - prev_hit, prev_hit_idx를 설정하여 이전에 적중한 탑의 크기와 idx를 기억했음.
+# - 도대체 어디서 시간을 잡아먹는 걸까?
+# - Pypy도 실패함.
+
 import sys
 
 num = int(sys.stdin.readline().strip()) # [1, 500,000]
@@ -40,36 +46,7 @@ while len(stack) != 1: # O(N)
         answer[record_idx] = prev_hit_idx + 1
         
 print(*answer)
-
-import sys
-
-num = int(sys.stdin.readline().strip()) # [1, 500,000]
-array = list(map(int, sys.stdin.readline().split())) # O(N)
-stack = []
-answer = [0 for _ in range(num)] # O(N)
-
-for idx, item in enumerate(array):
-    if stack:
-        while stack:
-            if stack[-1][1] < item:
-                stack.pop()
-            else:
-                # 수신탑 발견
-                answer[idx] = stack[-1][0] + 1 # i번째 탑이므로 idx+1
-                stack.append((idx, item))
-                break
-        else:
-            answer[idx] = 0
-            stack.append((idx, item))
-    else:
-        # 넣을 곳이 없음
-        answer[idx] = 0
-        stack.append((idx, item))
-        
-print(*answer)
-
-'''
-
+"""
 
 import sys
 
