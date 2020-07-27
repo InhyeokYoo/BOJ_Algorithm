@@ -6,7 +6,6 @@ https://www.acmicpc.net/problem/9507
 - 풀이과정:
     - **왜 DP로 풀어야 하는가?**
     걍 딱 봐도 피보나치...  
-
 '''
 
 from collections import defaultdict
